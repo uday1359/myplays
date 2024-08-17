@@ -1,0 +1,24 @@
+---
+- name: defining a vatiable
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars:
+   app_name: myapp
+   app_port: 7979
+  tasks:
+   - name: print application name
+     debug: 
+      msg: "the application name is {{app_name}}"
+   - name : print application port
+     debug:
+      msg: "the application port is {{app_port}}"
+   - name: create a configuration file
+     copy: 
+      content: |
+               application:
+                name: "{{app_name}}"
+                port: "{{app_port}}"
+      dest: /etc/app.cfg
+       
+...

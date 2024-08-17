@@ -1,0 +1,27 @@
+---
+ - name:
+   hosts: 192.168.1.99
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: 
+      meta: flush_handlers
+    - name:
+      debug: 
+       msg: "this is first task"
+      changed_when: yes
+      notify: see2
+    - name:
+      debug: 
+       msg: "this is secound task"
+      changed_when: yes
+      notify: see
+   handlers: 
+    - name: see
+      debug: 
+       msg: "cheking.... see"
+    - name: see2
+      debug: 
+       msg: "cheking.... see2"
+...
+# handlers is 

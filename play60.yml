@@ -1,0 +1,59 @@
+---
+ - name:
+   hosts: all
+   become: yes
+   remote_user: ansible
+   vars: 
+    uname: giri
+    dname: /home/hi
+   tasks: 
+    - name:
+      debug: 
+       msg: variable is defined and its values {{game}}
+      when: game is defined
+
+    - name:
+      debug: 
+       msg: variable is not defined 
+      when: game is not defined
+
+    - name: use fail module
+      fail: 
+       msg: game is not defined
+      when: game is not defined
+      ignore_errors: 1
+
+    - name: 
+      stat: 
+       path: "{{dname}}"
+      register: out
+
+    - name: 
+      debug:
+       msg: "directoru {{out}} exists"
+      when: out.stat.exists and out.stat.isdir
+
+    - name: 
+      debug:
+       msg: "dir is not exist"
+      when: out.stat.exists == 0
+
+    - name: 
+      file:
+       path: "{{dname}}"
+       state: directory
+       mode: "0755"
+      when: out.stat.exists == 0
+    
+    - name:
+      shell: ls -l {{dname}} 
+      register: out1
+      when: out.stat.isdir == 1
+    
+    - name: 
+      debug:
+       var: "{{out1.stdout_lines}}"
+      when: out.stat.isdir == 1
+
+...
+

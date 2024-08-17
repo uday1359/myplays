@@ -1,0 +1,30 @@
+---
+ - name:  
+   hosts: localhost
+   become: yes
+   remote_user: ansible
+   vars: 
+    fname: /etc/ssh/sshd_config
+   tasks: 
+    - name:
+      lineinfile:
+       path: "{{fname}}"
+       regexp: 'PermitRootLogin no'
+       line: 'PermitRootLogin yes'
+       backup: yes
+      notify: 
+       - restart_ssh
+       - restart_ssh_debian
+      ignore_unreachable: yes
+   handlers: 
+    - name: restart_ssh
+      service: 
+       name: sshd
+       state: restarted
+      when: ansible_distribution|lower in ['redhat','centos']
+    - name: restart_ssh_debian
+      service:  
+       name: ssh
+       state: restarted
+      when: ansible_distribution|lower in ['debian'] 
+...

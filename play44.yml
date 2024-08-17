@@ -1,0 +1,14 @@
+---
+ - name: paly to download /var/log/messages to control moge using fetch  mogule
+   hosts: all
+   remote_user: ansible
+   become: true
+   vars: 
+    fname: /var/log/messages
+   tasks:
+    - name: copy remote {{fname}} file to local /tmp derectory
+      fetch:
+       src: "{{fname}}"
+       dest: "/tmp/messages_{{ansible_hostname}}"
+       flat: yes
+...

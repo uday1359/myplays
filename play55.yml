@@ -1,0 +1,21 @@
+---
+ - name: demonstate loop
+   hosts: all
+   become: yes
+   remote_user: ansible
+   vars:
+    users:
+     - name: chris
+       gecos: "this is secure"
+     - name: donald
+       gecos: "this is file"
+    spass: test123      
+   tasks:
+    - name:
+      user: 
+       name: "{{item.name}}"
+       comment: "{{item.gecos}}"
+       password: "{{spass|password_hash('sha512')}}"
+      loop: "{{users}}"
+...
+         

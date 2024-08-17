@@ -1,0 +1,25 @@
+<html>
+<h1>
+-----------------------------------------------------------------------------------
+</h1>
+<br>
+Hostname: {{ansible_hostname}}
+<br>
+Host FQDN: {{ansible_facts['fqdn']}}
+<br>
+Linux Distribution: {{ansible_facts['distribution']}}
+<br>
+Linux Distribution Version: {{ansible_facts['distribution_version']}}
+<br>
+The Server Ip Addresses: {{ansible_ens192.ipv4.address}}
+<br>
+Server Configured with Totl Real Memory(In Megabytes): {{ansible_memtotal_mb}}
+<br>
+Server Free Memory:  {{ansible_memory_mb.real.free}}
+<br>
+<h1>
+-----------------------------------------------------------------------------------
+</h1>
+<a href="http://192.168.1.38:99/index.html">Click here to go back</a>
+</html>
+

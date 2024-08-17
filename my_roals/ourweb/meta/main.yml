@@ -1,0 +1,8 @@
+---
+dependencies: []
+galaxy_info:
+  author: Sanjevi M
+  description: Sanjeevi Bangalore
+  company: CGI Inc
+  license: ALC
+  min_ansible_version: 2.9

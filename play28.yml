@@ -1,0 +1,15 @@
+---
+- name: work with variable
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars:
+   course: javascript
+  tasks:
+   - name: print variable name
+     debug: 
+      msg: is the value {{course}}
+      # msg: {{course}} is the value --does not works
+      # msg: "{{course}} is the value" --works
+      # msg: is {{course}} the value  --works
+...

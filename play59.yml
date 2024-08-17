@@ -1,0 +1,22 @@
+---
+ - name: condition operaters
+   hosts: localhost
+   remote_user: ansible
+   become: yes
+   vars:
+    fname: /etc/passwd
+   tasks: 
+    - name: file is exits
+      stat: 
+       path: "{{fname}}"
+      register: out
+      ignore_errors: yes
+    - name: file is exit
+      debug: 
+       msg: "{{fname}} file is exit"
+      when: out.stat.exists == true
+    - name: file is not exit
+      debug: 
+       msg: "{{fname}} file is not exit"
+      when: out.stat.exists == false
+...

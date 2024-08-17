@@ -1,0 +1,17 @@
+---
+- name: replace permit root login in /etc/ssh/sshd_config file
+  hosts: 192.168.1.68
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: replace the permit root login
+     lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: ^PermitRootLogin 
+      line: "PermitRootLogin yes"
+      backup: yes
+   - name: restart the ssh service after the config file change
+     service:
+      name: sshd
+      state: restarted
+...

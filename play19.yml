@@ -1,0 +1,14 @@
+---
+- name: demonstrate to create a soft link 
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: create a soft link file
+     file:
+      src: /etc/passwd
+      dest: /home/ansible/lpasswd
+      state: link
+      force: yes   # if already exit over ride the file
+...
+    

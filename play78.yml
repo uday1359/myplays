@@ -1,0 +1,20 @@
+---
+ - name: demonstrate the block rescue always
+   hosts: 192.168.1.99
+   become: yes
+   remote_user: ansible
+   tasks:
+    - block:
+       - name: 
+         yum: 
+          name: httpd
+          state: installed
+      rescue:
+       - name: 
+         debug: 
+          msg: "i am in rescue"
+      always:
+       - name:  
+         debug: 
+          msg: "i am in always"
+...      

@@ -1,0 +1,14 @@
+---
+- name: play to demonstrate archive module. ie tar and zip
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: task to archive the given directory
+     archive:
+      path:
+       - /etc/*
+       - /var/*
+      format: gz
+      dest: asiarchive.tar.gz
+...

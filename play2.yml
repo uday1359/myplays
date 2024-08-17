@@ -1,0 +1,9 @@
+- name: this is host details
+  hosts: all
+  become: yes
+  remote_user: ansible
+  tasks:
+   - name: delete user
+     user:
+      name: anabell23
+      state: absent

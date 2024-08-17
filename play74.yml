@@ -1,0 +1,21 @@
+---
+ - name: 
+   hosts: 192.168.1.38
+   become: yes
+   remote_user: ansible
+   vars: 
+    pkg_name: nfs-utils
+    src-name: nfs-server
+    #status: started
+   tasks:
+    - name: 
+      yum: 
+       name: "{{pkg_name}}"
+       state: latest
+      notify: start_nfs
+   handlers: 
+    - name: start_nfs
+      service: 
+       name: "{{src-name}}"  
+       state: started 
+...

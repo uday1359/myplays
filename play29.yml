@@ -1,0 +1,16 @@
+---
+- name: work with variable
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars_files:
+   - vars/prod_user.yml
+  tasks:
+   - name: create user
+     user:
+      name: "{{u1_name}}"
+      password: "{{u1_password|password_hash('sha512')}}"
+      comment: "{{u1_gecos}}"
+      home: "{{u1_home}}"
+      shell: "{{u1_shell}}"
+...

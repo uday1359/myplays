@@ -1,0 +1,12 @@
+---
+- name: play to modify the /etc/hosts file
+  hosts: all
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: modify the /etc/hosts file
+     lineinfile: 
+      path: /etc/hosts
+      line: "192.168.1.25 vcenter.alclabs.in
+             /n192.168.1.1 gateway.alclabs.in"
+...

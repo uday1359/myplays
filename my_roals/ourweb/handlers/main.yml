@@ -1,0 +1,10 @@
+---
+# handlers file for ourweb
+- name: web_start
+  service:
+   name: "{{src_name}}"
+   state: started
+- name: web_restart
+  service:
+   name: "{{src_name}}"
+   state: restarted

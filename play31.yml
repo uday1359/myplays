@@ -1,0 +1,19 @@
+---
+- name: work with vars_prompt
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars_prompt:
+   - prompt: "enter user name"
+     name: u_name
+     private: no
+   - prompt: "enter password"
+     name: u_pass
+     private: no
+     default: test123
+  tasks:
+   - name: create user
+     user:
+      name: "{{u_name}}"
+      password: "{{u_pass|password_hash('sha512')}}"
+...

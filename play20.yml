@@ -1,0 +1,16 @@
+---
+- name: create a cronjob
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: create a cronjob
+     cron:
+      name: myjob1
+      day: 29
+      hour: "*"
+      day: "*"
+      month: "*"
+      weekday: "6"
+      job: "/usr/bin/df -h >>/tmp/giri.out"
+...

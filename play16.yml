@@ -1,0 +1,13 @@
+---
+- name: user expaire
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: user expaires
+     user:
+      name: uday
+      expires: 1722450600
+      #date --date="MM/DD/YYYY" +%s
+      state: present
+...

@@ -1,0 +1,22 @@
+---
+ - name: 
+   hosts: 192.168.1.99
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: 
+      file:
+       path: "/tmp/sysinfo_{{ansible_hostname}}"
+       state: absent
+    - name:
+      lineinfile:
+       path: "/tmp/sysinfo_{{ansible_hostname}}"
+       lint: |
+              "name: {{ansible_hostname}}
+               memory: {{ansible_memtotal_mb}}
+               CPU count: {{ansible_processor_count}}"
+       create: yes
+   # - name: 
+    #  lineinfile: 
+     #  path: "/tmp/sysinfo_{{ansible_hostname}}"
+...

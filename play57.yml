@@ -1,0 +1,14 @@
+---
+ - name: demonstrate the fail module
+   hosts: localhost
+   gather_facts: no
+   remote_user: ansible
+   become: yes
+   vars: 
+    res: yes
+   tasks: 
+    - name: 
+      fail:
+       msg: "this is {{res}}"
+      when: res
+...

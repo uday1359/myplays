@@ -1,0 +1,12 @@
+--- 
+ - name: host and group variables
+   hosts: all
+   become: true
+   become_user: ansible
+   tasks: 
+    - name: print host and group variables
+      debug: 
+       msg: |
+              hostname is {{name}}
+...
+           

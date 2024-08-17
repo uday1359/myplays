@@ -1,0 +1,17 @@
+---
+ - name: 
+   hosts: 192.168.1.99
+   become: yes
+   remote_user: ansible
+   vars: 
+    pkg: kernel
+   tasks: 
+    - name: task to update the kernel
+      package: 
+       name: "{{pkg}}"
+       state: latest
+      when: ansible_memory_mb.real.total > 2048
+    - name:
+      debug: 
+       msg: total memory available in  {{ansible_hostname}} is {{ansible_memory_mb.real.total}} 
+...

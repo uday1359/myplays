@@ -1,0 +1,4 @@
+ - name: 
+   service: 
+    name: "{{ser_name}}"
+    state: started

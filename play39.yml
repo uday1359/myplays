@@ -1,0 +1,12 @@
+---
+- name: gathering facts
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible   
+  tasks:
+   - name: print ansible  facts using debug module
+     debug: 
+      msg: |
+            the kernel id {{ansible_facts.kernel}}
+            the hostname is {{ansible_facts['hostname']}}
+...

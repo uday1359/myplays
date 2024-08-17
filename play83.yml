@@ -1,0 +1,21 @@
+---
+# ansible-vault create user_sec.yml: to create ansible vault file
+# ansible-vault view user_sec.yml : to view the content of the file
+#ansible-vault edit user_sec.yml : to edit the file
+#ansible-vault rekey user_sec.yml : to change the vault password 
+# ansible-vaukt encrypt file.yml : create an encryptd vault from normal file
+# ansible-vault  decrypt file.yml : to create decryptd file from encrypted vault
+# ansible-playbook
+ - name: 
+   hosts: 192.168.1.99
+   become: yes
+   remote_user: ansible
+   vars_files: /home/ansible/playbook/ansi_sec.yml
+   gather_facts: no
+   tasks:
+    - name:
+      user:
+       name: myansi01
+       password: "{{pass|password_hash('sha512')}}"
+       state: present
+...

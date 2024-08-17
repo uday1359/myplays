@@ -1,0 +1,11 @@
+---
+ - name: 
+   hosts: all
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: 
+      debug: 
+       msg: "{{item}}"
+      with_sequence: start=1  stride=2 count=10
+...

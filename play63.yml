@@ -1,0 +1,10 @@
+---
+ - name: play to create user based on the group they belongs to 
+   hosts: all
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: 
+      debug:
+       msg: "{{ansible_facts.ens192.ipv4.address}}"
+      

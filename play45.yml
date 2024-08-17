@@ -1,0 +1,18 @@
+---
+- name: gathering ansible facts
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible   
+  tasks:
+   - name: create a empty file
+     file: 
+      path: "/etc/{{ansible_hostname}}.cfg"
+      state: touch
+      mode: 0644
+      owner: root
+      group: root
+   - name: task to write host configuration file
+     lineinfile:
+      path: "/etc/{{ansible_hostname}}.cfg"
+      line: "good morning"
+...

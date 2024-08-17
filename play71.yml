@@ -1,0 +1,13 @@
+---
+ - name: 
+   hosts: 192.168.1.38
+   become: yes
+   remote_user: ansible
+   tasks: 
+    - name: 
+      raw: vmstat 2 2 
+      register: out
+    - name: 
+      debug:
+       msg: "{{out.stdout_lines}}"
+...

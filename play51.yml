@@ -1,0 +1,17 @@
+---
+ - name: demonstrate uri module
+   hosts: all
+   become: yes
+   remote_user: ansible
+   gather_facts: no
+   tasks:
+    - name: uri module
+      uri:
+       url: http://192.168.1.31/index.html
+       return_content: yes
+      register: out
+      ignore_errors: yes
+    - name: 
+      debug:
+       var: out
+...

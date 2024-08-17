@@ -1,0 +1,16 @@
+--- 
+ - name: copy file in remote server
+   hosts: all
+   become: true
+   become_user: ansible
+   vars:
+    src_file: /etc/resolv.conf
+    dest_file: /tmp/resolv.conf
+   tasks: 
+    - name: copy file
+      copy:
+       src: "{{src_file}}"
+       dest: "{{dest_file}}"
+       remote_src: yes
+       backup: yes
+...

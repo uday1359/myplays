@@ -1,0 +1,16 @@
+---
+ - name: 
+   hosts: all
+   become: yes
+   remote_user: ansible
+   vars: 
+    fname: /etc/passwd
+   tasks:
+    - name:
+      stat: 
+       path: "{{fname}}"
+      register: sree
+    - name: 
+      debug:
+       var: sree
+...

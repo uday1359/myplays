@@ -1,0 +1,5 @@
+u1_name: mysql
+u1_password: root123
+u1_gecos: "this is new "
+u1_shell: /bin/bash
+u1_home: /home/mysql

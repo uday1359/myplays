@@ -1,0 +1,12 @@
+---
+ - name: work with vars
+   hosts: 192.168.1.99
+   become: true
+   remote_user: ansible
+   vars:
+    eye_color: blue
+   tasks:
+    - name: task to debug a variable
+      debug:
+       var: eye_color
+...

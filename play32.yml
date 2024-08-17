@@ -1,0 +1,30 @@
+
+- name: work with vars
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars:
+   user1:
+    name: charan
+    gecos: "this is charan"
+    home: /home/charan
+    shell: /bin/bash
+   user2:
+    name: giri
+    gecos: "this is giri"
+    home: /home/giri
+    shell: /bin/bash
+  tasks:
+   - name: using variables
+     debug:
+      msg: |
+              user1 name is {{user1.name}}
+              user1 gecos is {{user1.gecos}}
+              user1 gecos is {{user1.home}}
+              user1 gecos is {{user1.shell}}
+
+              user2 name is {{user2['name']}}
+              user2 gecos is {{user2['gecos']}}
+              user2 gecos is {{user2['home']}}
+              user2 gecos is {{user2['shell']}}
+...

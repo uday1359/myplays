@@ -1,0 +1,13 @@
+---
+ - name: demonstrate systemd module
+   hosts: all
+   become: yes
+   remote_user: ansible
+   vars:
+    sname: httpd
+   tasks: 
+    - name: 
+      systemd:
+       name: "{{sname}}"
+       state: stopped
+...

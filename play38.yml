@@ -1,0 +1,15 @@
+---
+- name: work with registar variable
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: task to start web server
+     service: 
+      name: httpd
+      state: restarted
+     register: vname1
+   - name: debug modulw to print register variable
+     debug:
+      msg: "this service name is : {{vname1.name}} and state is {{vname1['state']}}"
+...

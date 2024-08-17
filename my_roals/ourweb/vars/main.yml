@@ -1,0 +1,6 @@
+---
+# vars file for ourweb
+pkg_name: httpd
+src_name: httpd
+pport: 99
+web_mesg: "Hello from Ansi Bro !!"

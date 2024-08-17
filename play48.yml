@@ -1,0 +1,21 @@
+--- 
+ - name: script module
+   hosts: all
+   become: true
+   become_user: ansible
+   vars:
+    script_name: get_pastat.sh
+    local_dir: /home/ansible/playbooks
+    remote_dir: /etc
+    output_file: /opt/proc_stat.out
+    local_out_dir: /tmp
+   tasks: 
+    - name: run the script module in remote server
+      copy:
+       src: "{{local_dir}}/{{scrip_name}}"
+       dest: "{{remote_dir}}/{{script_name}}"
+       mode: '0755'
+    - name: run the scrpt code
+      script: "{{remote_dir}}/{{script_name}}"
+      
+      

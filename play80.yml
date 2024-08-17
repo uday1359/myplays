@@ -1,0 +1,22 @@
+---
+ - name:
+   hosts: localhost
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name:
+      mount: 
+       src: /dev/sr0
+       path: /sai
+       opts: ro
+       fstype: iso9600
+       state: mounted
+    - name:
+      command: 
+       cmd: "lsblk"
+      register: out
+    - name:  
+      debug: 
+       msg: "{{out.stdout_lines}}"
+...
+    

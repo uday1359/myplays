@@ -1,0 +1,8 @@
+---
+- name: demonstrate module to print something on the screen
+  hosts: localhost
+  tasks:
+   - name: print some text
+     debug:
+      msg: "good afternoon"
+...

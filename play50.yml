@@ -1,0 +1,14 @@
+---
+- name: 
+  hosts: all
+  gather_facts: no
+  become: true
+  remote_user: ansible
+  vars: 
+   f_url: http://192.168.2.45:91/BaseOS/Packages/cryptsetup-reencrypt-2.3.3-2.el8.x86_64.rpm
+  tasks:
+   - name: 
+     get_url:
+      url: "{{f_url}}"
+      dest: /home/ansible
+... 

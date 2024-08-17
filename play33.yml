@@ -1,0 +1,21 @@
+- name: work with vars
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars:
+   user:
+    trainer: 
+     first_name: captain
+     last_name: america
+    student: 
+     first_name: briliant
+     last_name: charist
+  tasks:
+   - name: print variable values
+     debug: 
+      msg: |
+             "{{user.trainer.first_name}} and {{user.trainer.last_name}}"
+             "{{user['student']['first_name']}} and {{user['student']['last_name']}}"
+...
+        
+   

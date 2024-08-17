@@ -1,0 +1,22 @@
+---
+ - name: demonstrate uri module
+   hosts: all
+   become: yes
+   remote_user: ansible
+   gather_facts: no
+   tasks:
+    - name: uri module
+      uri:
+       url: http://192.168.1.31/index1.html
+       return_content: yes
+      register: out
+      ignore_errors: yes
+    - name: 
+      debug:
+       msg: "this page is available"
+      when: out.status == 200
+    - name: 
+      debug:
+       msg: "this page is not found"
+      when: out.status == 404
+...

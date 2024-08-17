@@ -1,0 +1,13 @@
+---
+- name: gathering facts
+  hosts: localhost
+  become: true
+  remote_user: ansible   
+  tasks:
+   - name: print ansible  facts using debug module
+     debug: 
+      msg: |
+            the kernel is {{ansible_facts.kernel}}
+            the hostname is {{ansible_facts.hostname}}
+            the costom fact is {{ansible_local['sap_prod']['sap']['myapp']}}
+...

@@ -1,0 +1,16 @@
+---
+- name: work with variable
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  vars: 
+   u1_name: sree
+  vars_files:
+   - vars/prod_user.yml
+  tasks:
+   - name: include variables
+     include_vars: vars/dev_user.yml
+   - name: priarity variable value print
+     debug:
+      msg: "{{u1_name}}"
+...

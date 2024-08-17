@@ -1,0 +1,10 @@
+--- 
+ - name: reboot modile
+   hosts: all
+   become: true
+   remote_user: ansible
+   tasks: 
+    - name: 
+      reboot:
+       msg: "rebooting the system"
+...

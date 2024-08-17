@@ -1,0 +1,14 @@
+---
+- name: demonstrate the command module
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: create a directory
+     shell: mkdir /tmp/ansidir
+   - name: copy a directory
+     shell: cp /var/log/messages /tmp/ansidir
+   - name: task to compress a given file
+     shell: gzip /tmp/ansidir
+...
+    

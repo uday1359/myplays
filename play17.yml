@@ -1,0 +1,20 @@
+---
+- name: create user a user and group and add the created group as secondary group
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: create a user
+     user:
+      name: giri
+      state: present
+   - name: create a group 
+     group:
+      name: mad
+      state: present
+   - name: add the group as secondary group
+     user:
+      name: giri
+      groups: mad
+      append: yes # this add the suplimentery group with out replacing the existing one
+...

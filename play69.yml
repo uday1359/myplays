@@ -1,0 +1,34 @@
+---
+ - name: 
+   hosts: 192.168.1.38
+   become: yes
+   remote_user: ansible
+   vars: 
+    sou_dir: /triner
+    des_dir: /siva_plays
+   tasks: 
+    - name: 
+      file: 
+       path: "{{des_dir}}"
+       state: directory
+    - name:
+      yum: 
+       name: rsync
+       state: latest
+      delegate_to: localhost
+    - name:
+      yum:
+       name: rsync
+       state: latest
+    - name: 
+      synchronize: 
+       dest: "{{sou_dir}}"
+       src: "{{des_dir}}"
+       #compress: yes
+       archive: yes
+       recursive: yes
+       mode: pull
+...
+     
+
+     

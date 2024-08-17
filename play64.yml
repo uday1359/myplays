@@ -1,0 +1,23 @@
+--- 
+ - name: 
+   hosts: all
+   become: yes
+   remote_user: ansible
+   vars: 
+    usr: bing
+    pas: 'test123'
+    #gecos: "this is bing"
+    #home: /home/bing
+    #shell: /bin/bash
+   tasks: 
+    - name: 
+      vars: 
+       usr: jaya
+      user:
+       name: "{{usr}}"
+       password: "{{pas|password_hash('sha512')}}"
+       state: absent
+    - name: 
+      debug: 
+       msg: "{{usr}} and {{pas}}"
+...

@@ -1,0 +1,13 @@
+---
+- name: demonstrate replace module in ansible
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: task replace test using replace module
+     replace:
+      path: /etc/iscsi/initatorname.iscsi
+      regexp: iqn.1994-05.com.redhat:a47b614e2d58
+      replace: iqn.1994-05.com.redhat:a47b614e2d58
+      backup: yes
+...

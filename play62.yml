@@ -1,0 +1,49 @@
+---
+ - name: play to create user based on the group they belongs to 
+   hosts: ['prod','dev','test']
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: first group
+      group:
+       name: prodops
+       state: present
+      when: ansible_facts.ens192.ipv4.address 
+    - name: 
+      group:
+       name: devopses
+       state: present
+      when: ansible_facts.ens192.ipv4.address 
+    - name:
+      group: 
+       name: testops
+       state: present
+      when: ansible_facts.ens192.ipv4.address in groups['test'] or ansible_hostname in groups['test']
+    - name: 
+      user: 
+       name: prodadm
+       state: present
+       password: "{{'test123'|password_hash('sha512')}}"
+       groups: prodops
+       append: yes
+      when: ansible_facts.ens192.ipv4.address in groups['prod'] or ansible_hostname in groups['prod']
+    - name: 
+      user: 
+       name: devopsadm
+       state: present
+       password: "{{'test123'|password_hash('sha512')}}"
+       groups: devopses
+       append: yes
+      when: ansible_facts.ens192.ipv4.address in groups['dev'] or ansible_hostname in groups['dev']
+    - name: 
+      user: 
+       name: testadm
+       state: present
+       password: "{{'test123'|password_hash('sha512')}}"
+       groups: testops
+       append: yes
+      when: ansible_facts.ens192.ipv4.address in groups['test'] or ansible_hostname in groups['test']
+    - name: 
+      debug: 
+       msg: "{{ansible_ens192.ipv4.address}}"
+...

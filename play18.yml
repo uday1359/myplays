@@ -1,0 +1,13 @@
+---
+- name: download the file from remote server
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: fetch the file
+     fetch:
+      src: /var/log/messages 
+      dest: /tmp/
+      flat: yes
+...
+      

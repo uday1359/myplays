@@ -1,0 +1,8 @@
+---
+- name: Play to Install,Create web
+  hosts: sivakumar
+  become: true
+  remote_user: ansible
+  roles:
+   - ourweb
+...

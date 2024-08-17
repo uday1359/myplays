@@ -1,0 +1,14 @@
+- name: this is host details
+  hosts: all
+  become: yes
+  remote_user: ansible
+  tasks:
+   - name: create new user
+     user:
+      name: anabell23
+      uid: 7889
+      home: /home/anabell23
+      shell: /bin/bash
+      password: "{{ 'root123'|password_hash('sha512') }}"
+      comment: created by 21
+      state: present

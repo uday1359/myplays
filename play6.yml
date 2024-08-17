@@ -1,0 +1,25 @@
+--- 
+- name: play1 to install samba server
+  hosts: [ 192.168.1.99, 192.168.1.35 ]
+  become: true 
+  remote_user: ansible
+  tasks:
+   - name: task to install samba
+     yum:
+      name: samba
+      state: latest
+
+- name: play2 to start samba service
+  hosts: [ 192.168.1.99, 192.168.1.35 ]
+  become: true 
+  remote_user: ansible
+  tasks:
+   - name: task to install samba - smbd
+     service:
+      name: smb
+      state: started
+   - name: task to start nmbd
+     service:
+      name: nmb
+      state: started
+...

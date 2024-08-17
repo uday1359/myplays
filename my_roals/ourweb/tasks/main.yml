@@ -1,0 +1,37 @@
+---
+# tasks file for ourweb
+ - name: "Install {{pkg_name}} in {{ansible_hostname}}"
+   yum: 
+    name: "{{pkg_name}}"
+    state: latest
+   notify: web_start
+ - name: Copy the configuration file
+   copy:
+    src: myweb.conf
+    dest: /etc/httpd/conf.d/myweb.conf
+   notify: web_restart
+ - name: Create a directory for documents
+   file:
+    path: /myweb
+    state: directory
+ - name: create index.html file
+   template:
+    src: index.j2
+    dest: /myweb/index.html
+    #owner: root
+    #group: root
+    #mode: '0644'
+ - name: create serverinfo.html file
+   template:
+    src: serverinfo.j2
+    dest: /myweb/serverinfo.html
+    #owner: root
+    #group: root
+    #mode: '0644'
+ - name: "Add {{pport}} to firewall"
+   firewalld:
+    port: "{{pport}}/tcp"
+    permanent: yes
+    immediate: yes
+    state: enabled
+...

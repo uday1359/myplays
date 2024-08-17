@@ -1,0 +1,42 @@
+---
+- name: play to install http web server
+  hosts: all
+  remote_user: ansible
+  become: true
+  tasks:
+   - name: Task to copy repo file from local to remote server
+     copy:
+      src: /etc/yum.repos.d/rhel83.repo
+      dest: /etc/yum.repos.d/rhel83.repo
+      mode: '0644'
+      owner: root
+      group: root
+   - name: Task to install httpd package on remote server
+     yum:
+      name: httpd
+      state: installed
+   - name: Task to create an index file
+     copy:
+      src: /home/ansible/playbook/index.html
+      dest: /var/www/html/index.html
+      mode: '0644'
+      owner: root
+      group: root
+   - name: task to start firewalld daemon
+     service:
+      name: firewalld
+      state: started
+      enabled: yes
+   - name: Task to add http port to firewall
+     firewalld:
+      service: http
+      state: enabled
+      permanent: yes
+      immediate: yes
+   - name: task to start http web server
+     service:
+      name: httpd
+      state: started
+      enabled: yes
+
+    

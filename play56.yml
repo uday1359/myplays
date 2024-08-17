@@ -1,0 +1,14 @@
+---
+ - name: demonstrate the conditional state ments
+   hosts: localhost
+   gather_facts: no
+   remote_user: ansible
+   become: yes
+   vars: 
+    res: yes
+   tasks: 
+    - name: 
+      debug:
+       msg: "this is {{res}}"
+      when: res
+...

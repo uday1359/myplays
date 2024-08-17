@@ -1,0 +1,37 @@
+---
+ - name: 
+   hosts: all
+   become: yes
+   remote_user: ansible
+   tasks:
+    - name: 
+      yum:
+       name: 
+        - httpd
+        - firewalld
+       state: latest
+    - name: 
+      service:
+       name: httpd
+       enabled: yes
+       state: started
+    - name: 
+      service:
+       name: firewalld
+       state: started
+       enabled: yes
+    - name: 
+      firewalld:
+       service: http
+       permanent: yes
+       state: enabled
+       immediate: yes
+    - name:
+      lineinfile:
+       line: "<html>
+                 <h1>good morning every one</h1>
+              </html>"
+       dest: /var/www/html/index.html
+       create: yes
+...
+        

@@ -1,0 +1,9 @@
+---
+- name: demonstrate the command module
+  hosts: 192.168.1.99
+  become: true
+  remote_user: ansible
+  tasks:
+   - name: task to compress a given file
+     command: gzip /var/log/messages
+...
